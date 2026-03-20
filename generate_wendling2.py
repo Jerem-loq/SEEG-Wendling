@@ -49,7 +49,7 @@ def S(v):
 def simulate_wendling(dur, fs_out=1000, fs_sim=10000):
     """
     Solves the Wendling 4-population model using the Euler-Maruyama method.
-    Runs at 10kHz internqlly to prevent numerical damping of the fast 80Hz dynamics.
+    Runs at 10kHz internally to prevent numerical damping of the fast 80Hz dynamics.
     """
     dt = 1.0 / fs_sim
     n_steps_sim = int(dur * fs_sim)
@@ -171,7 +171,7 @@ def simulate_wendling(dur, fs_out=1000, fs_sim=10000):
 
 
 if __name__ == "__main__":
-    fs = 1000
+    fs = 1_000
     dur = 260.0
 
     # Run the custom solver
