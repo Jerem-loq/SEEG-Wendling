@@ -99,12 +99,12 @@ def simulate_wendling(dur, fs_out=1000, fs_sim=10000):
     # E.g., increases from 10.0 to 20.0
     # G_arr = np.linspace(5.0, 25.0, n_steps_sim)
     # G_arr = np.full(n_steps_sim, 20)
-    G_keys = np.array([20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 5.0, 5.0])
+    G_keys = np.array([20.0, 20.0, 20.0, 20.0, 20.0, 20.0, 50.0, 50.0, 5.0, 5.0])
     G_arr = np.interp(t_sim, key_times, G_keys)
 
 
     # Pre-generate Gaussian white noise p(t)
-    p_t_1k = np.random.normal(90, 30, n_steps_out)  # Generate noise at 1 kHz to maintain the correct physiological power spectrum
+    p_t_1k = np.random.normal(92, 25, n_steps_out)  # Generate noise at 1 kHz to maintain the correct physiological power spectrum
     p_t = np.repeat(p_t_1k, ds_factor)  # Hold each noise value for ds_factor steps (10) for the 10 kHz simulation
 
     # Constants from table 1
@@ -194,7 +194,7 @@ if __name__ == "__main__":
     eeg += ambient_noise
     eeg *= 10.0
 
-    version = "test_6"
+    version = "test_8"
     np.save(f"simm_eeg_trace_NL_{version}.npy", eeg.astype(np.float64))
     np.savez(f"sim_eeg_param_NL_{version}.npz", time=t_stable, A=A_stable, B=B_stable, G=G_stable)
     print(f"Saved 'sim_eeg_trace{version}.npy' and its parameters (.npz).")
